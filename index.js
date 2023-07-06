@@ -21,15 +21,16 @@ server.get('/', async (req, res) => {
     res.send("funciona");/**/
 });
 
+server.use(express.static(path.join(__dirname,'src/dbimages')));
 
 // Require employee routes
-const employeeRoutes = require('./src/routes/employee.routes')
-const productRoutes = require('./src/routes/product.routes')
+const userRoutes = require('./src/routes/user.routes')
+const movieRoutes = require('./src/routes/movie.routes')
 // using as middleware
-server.use('/api/v1/employees', employeeRoutes)
-server.use('/api/v1/products', productRoutes)
+server.use('/api/v1/users', userRoutes)
+server.use('/api/v1/movies', movieRoutes)
 
-//server.use(express.static(path.join(__dirname,'src/dbimages')));
+
 function handleErrors(err, req, res, next) {
     console.log(err);
 

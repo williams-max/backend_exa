@@ -1,49 +1,50 @@
 'use strict';
-const Product = require('../models/product.model');
+const User = require('../models/user.model');
 exports.findAll = function(req, res) {
-Product.findAll(function(err, product) {
+User.findAll(function(err, employee) {
   console.log('controller')
   if (err)
   res.send(err);
-  console.log('res', product);
-  res.send(product);
+  console.log('res', employee);
+  res.send(employee);
 });
 };
 exports.create = function(req, res) {
-const new_product = new Product(req.body);
+const new_employee = new User(req.body);
 //handles null error
 if(req.body.constructor === Object && Object.keys(req.body).length === 0){
   res.status(400).send({ error:true, message: 'Please provide all required field' });
 }else{
-Product.create(new_product, function(err, product) {
+User.create(new_employee, function(err, employee) {
   if (err)
   res.send(err);
-  res.json({error:false,message:"Product added successfully!",data:product});
+  res.json({error:false,message:"User added successfully!",data:employee});
 });
 }
 };
 exports.findById = function(req, res) {
-Product.findById(req.params.id, function(err, product) {
+User.findById(req.params.id, function(err, employee) {
   if (err)
   res.send(err);
-  res.json(product);
+  res.json(employee);
 });
 };
 exports.update = function(req, res) {
   if(req.body.constructor === Object && Object.keys(req.body).length === 0){
     res.status(400).send({ error:true, message: 'Please provide all required field' });
   }else{
-    Product.update(req.params.id, new Product(req.body), function(err, product) {
+    User.update(req.params.id, new User(req.body), function(err, employee) {
    if (err)
    res.send(err);
-   res.json({ error:false, message: 'Product successfully updated' });
+   res.json({ error:false, message: 'User successfully updated' });
 });
 }
 };
 exports.delete = function(req, res) {
-Product.delete( req.params.id, function(err, product) {
+User.delete( req.params.id, function(err, employee) {
   if (err)
   res.send(err);
-  res.json({ error:false, message: 'Product successfully deleted' });
+  res.json({ error:false, message: 'User successfully deleted' });
 });
 };
+
