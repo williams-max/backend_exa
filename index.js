@@ -30,7 +30,6 @@ server.use('/api/v1/employees', employeeRoutes)
 server.use('/api/v1/products', productRoutes)
 
 //server.use(express.static(path.join(__dirname,'src/dbimages')));
-
 function handleErrors(err, req, res, next) {
     console.log(err);
 
